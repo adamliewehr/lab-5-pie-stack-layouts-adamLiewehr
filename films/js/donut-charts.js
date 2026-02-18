@@ -1,23 +1,36 @@
-const drawDonutCharts = (data) => {
-  // Generate the donut charts here
-
-  // console.log(data);
+function drawDonutCharts(data) {
   const svg = d3
     .select("#donut")
     .append("svg")
-    .attr("viewBox", [0, 0, width, height]);
-  // .style("border", "black solid 1px");
+    .attr("viewBox", [0, 0, width, height])
+    .style("border", "black solid 1px");
 
   const donutContainers = svg // main area for charts
     .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-  const years = [1975, 1995, 2013]; // these are the years that we want to draw donut charts for
-  console.log(data);
+  const years = [1996, 2006, 2015]; // these are the years that we want to draw donut charts for
+  //   console.log(data);
   // data contains an array of json objects containing the year, vinyl, streaming, etc. counts
 
+  let columns = [
+    "Action",
+    "Adventure",
+    "Comedy",
+    "Dark Comedy",
+    "Documentary",
+    "Drama",
+    "Horror",
+    "Romantic Comedy",
+    "Thriller or Suspense",
+    "Western",
+    "Multiple Genres",
+    "Musical",
+    "Concert or Performance",
+  ];
+
   // filtering everything but the year out of the columns
-  const formats = data.columns.filter((format) => format !== "year");
+  const formats = columns.filter((format) => format !== "year");
   console.log(formats); // these are the columns we care about
 
   // ! CHECK scales.js for the xScale before going into the forEach
@@ -104,4 +117,4 @@ const drawDonutCharts = (data) => {
       .style("font-size", "30px")
       .style("font-weight", 500);
   });
-};
+}

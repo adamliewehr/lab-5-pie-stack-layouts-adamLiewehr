@@ -7,7 +7,8 @@ const drawStackedBars = (data) => {
   const svg = d3
     .select("#bars")
     .append("svg")
-    .attr("viewBox", [0, 0, width, height]);
+    .attr("viewBox", [0, 0, width, height])
+    .style("border", "1px solid black");
 
   const innerChart = svg
     .append("g")
@@ -20,7 +21,7 @@ const drawStackedBars = (data) => {
     .offset(d3.stackOffsetExpand);
 
   const annotatedData = stackGenerator(data);
-  // console.log(annotatedData);
+  //   console.log(annotatedData);
 
   const minLowerBoundaries = [];
   const maxLowerBoundaries = [];
@@ -39,10 +40,10 @@ const drawStackedBars = (data) => {
     .range([innerHeight, 0])
     .nice();
 
-  // const maxUpperBoundary = d3.max(
-  //   annotatedData[annotatedData.length - 1],
-  //   (d) => d[1],
-  // );
+  //   // const maxUpperBoundary = d3.max(
+  //   //   annotatedData[annotatedData.length - 1],
+  //   //   (d) => d[1],
+  //   // );
 
   annotatedData.forEach((series) => {
     innerChart
@@ -59,7 +60,7 @@ const drawStackedBars = (data) => {
 
   const bottomAxis = d3
     .axisBottom(xScale)
-    .tickValues(d3.range(1975, 2020, 5))
+    .tickValues(d3.range(1995, 2018, 3))
     .tickSizeOuter(0);
 
   innerChart

@@ -7,7 +7,8 @@ const drawStreamGraph = (data) => {
   const svg = d3
     .select("#streamgraph")
     .append("svg")
-    .attr("viewBox", [0, 0, width, height]);
+    .attr("viewBox", [0, 0, width, height])
+    .style("border", "1px solid black");
 
   const innerChart = svg
     .append("g")
@@ -20,7 +21,7 @@ const drawStreamGraph = (data) => {
     .offset(d3.stackOffsetSilhouette);
 
   const annotatedData = stackGenerator(data);
-  // console.log(annotatedData);
+  console.log(annotatedData);
 
   const minLowerBoundaries = [];
   const maxLowerBoundaries = [];
@@ -41,15 +42,15 @@ const drawStreamGraph = (data) => {
     .range([innerHeight, 0])
     .nice();
 
-  // this was used before we centered the stream graph
-  // const maxUpperBoundary = d3.max(
-  //   annotatedData[annotatedData.length - 1],
-  //   (d) => d[1],
-  // );
+  //   // this was used before we centered the stream graph
+  //   // const maxUpperBoundary = d3.max(
+  //   //   annotatedData[annotatedData.length - 1],
+  //   //   (d) => d[1],
+  //   // );
 
   const bottomAxis = d3
     .axisBottom(xScale)
-    .tickValues(d3.range(1975, 2020, 5))
+    .tickValues(d3.range(1995, 2018, 3))
     .tickSizeOuter(0)
     .tickSize(innerHeight * -1);
 
@@ -81,17 +82,6 @@ const drawStreamGraph = (data) => {
 
   const leftAxisLabel = svg.append("text").attr("dominant-baseline", "hanging");
 
-  leftAxisLabel.append("tspan").text("Total Revenue");
-  leftAxisLabel
-    .append("tspan")
-    .text("(million USD)")
-    .attr("dx", 5)
-    .attr("fill-opacity", 0.7);
-  leftAxisLabel
-    .append("tspan")
-    .text("Adjusted for inflation")
-    .attr("x", 0)
-    .attr("dy", 20)
-    .attr("fill-opacity", 0.7)
-    .style("font-size", "14px");
+  leftAxisLabel.append("tspan").text("Total Tickets Sold");
+  leftAxisLabel.append("tspan").attr("dx", 5).attr("fill-opacity", 0.7);
 };
